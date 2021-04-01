@@ -2,40 +2,42 @@ package com.cywri.main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class BTS {
 
     public static void main(String[] args){
-        int[] arr = {2, 4, 3, 6, 8, 7, 5};
+        int[] arr = {   7};
         ArrayList<Integer> arrayList = new ArrayList<>();
-        Node node = BTS.arrayToBts(arr);
-        arrayList = BTS.printBtsArr(node, arrayList);
+        TreeNode treeNode = BTS.arrayToBts(arr);
+        arrayList = BTS.printBtsArr(treeNode, arrayList);
         arrayList.forEach((Integer item) -> {
             System.out.println("输出："+item);
         });
     }
 
-    public static ArrayList<Integer> printBtsArr(Node node, ArrayList<Integer> result){
-        if (node.getLeft() != null){
-            printBtsArr(node.getLeft(),result);
+    public static ArrayList<Integer> printBtsArr(TreeNode treeNode, ArrayList<Integer> result){
+        if (treeNode.getLeft() != null){
+            printBtsArr(treeNode.getLeft(),result);
         }
-        if (node.getRight() != null){
-            printBtsArr(node.getRight(),result);
+        if (treeNode.getRight() != null){
+            printBtsArr(treeNode.getRight(),result);
         }
-        result.add(node.getValue());
+        result.add(treeNode.getValue());
         return result;
     }
 
-    public static Node arrayToBts(int posarr[]){
+    public static TreeNode arrayToBts(int posarr[]){
         int len = posarr.length;
-        Node node = new Node();
+        TreeNode treeNode = new TreeNode();
+        if (len == 0){
+            return null;
+        }
         if (len == 1){
-            node.setValue(posarr[0]);
-            return node;
+            treeNode.setValue(posarr[0]);
+            return treeNode;
         }
         int mainValue = posarr[len-1];
-        node.setValue(mainValue);
+        treeNode.setValue(mainValue);
         int divideIndex = 0;
 
         for (int i = 0; i < len; i++){
@@ -44,45 +46,15 @@ public class BTS {
                 break;
             }
         }
-        if(divideIndex != -1){
+        if(divideIndex != 0){
             int[] leftArr = Arrays.copyOfRange(posarr, 0, divideIndex);
-            node.setLeft(arrayToBts(leftArr));
+            treeNode.setLeft(arrayToBts(leftArr));
         }
         if(divideIndex < len -1){
             int[] rightArr = Arrays.copyOfRange(posarr, divideIndex, len-1);
-            node.setRight(arrayToBts(rightArr));
+            treeNode.setRight(arrayToBts(rightArr));
         }
-        return node;
+        return treeNode;
     }
 }
 
-class Node{
-
-    private Integer value;
-    private Node left;
-    private Node right;
-
-    public Integer getValue() {
-        return value;
-    }
-
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
-    public Node getLeft() {
-        return left;
-    }
-
-    public void setLeft(Node left) {
-        this.left = left;
-    }
-
-    public Node getRight() {
-        return right;
-    }
-
-    public void setRight(Node right) {
-        this.right = right;
-    }
-}

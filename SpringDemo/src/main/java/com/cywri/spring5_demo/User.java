@@ -1,23 +1,33 @@
 package com.cywri.spring5_demo;
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-public class User {
 
-    @Test
-    public void test(){
-        //加载配置文件
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+import org.springframework.beans.factory.BeanNameAware;
 
-        //获取bean对象
-        User user = applicationContext.getBean("user",User.class);
+public class User implements BeanNameAware {
 
-        user.add();
+    private UserService userService;
 
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    private String beanId;
+
+    public String getBeanId() {
+        return beanId;
+    }
+
+    public void setBeanId(String beanId) {
+        this.beanId = beanId;
     }
 
     public void add(){
-        System.out.println("add......");
+        System.out.println("add......"+beanId);
+        userService.update();
+    }
+
+
+    public void setBeanName(String s) {
+        beanId = s;
     }
 }
 

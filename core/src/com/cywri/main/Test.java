@@ -12,6 +12,7 @@ public class Test {
         int[] arr = new int[]{2,2,2,0,1};
         int result = minArray(arr);
         print();
+
     }
 
     public static int minArray(int[] numbers) {

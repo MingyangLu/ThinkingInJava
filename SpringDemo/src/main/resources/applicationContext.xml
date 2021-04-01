@@ -3,5 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="user" class="com.cywri.spring5_demo.User"></bean>
+    <bean id="user" class="com.cywri.spring5_demo.User">
+        <property name="userService" ref="userServiceImpl"></property>
+    </bean>
+
+    <bean id="userDao" class="com.cywri.spring5_demo.UserDao"></bean>
+
+    <bean id="userServiceImpl" class="com.cywri.spring5_demo.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <bean id="emp" class="com.cywri.spring5_demo.bean.Emp">
+        <property name="ename" value="Alex"></property>
+        <property name="gender" value="male"></property>
+        <property name="dept">
+            <bean id="dept" class="com.cywri.spring5_demo.bean.Dept">
+                <property name="dname" value="保安部"></property>
+            </bean>
+        </property>
+    </bean>
 </beans>

@@ -74,6 +74,7 @@ class Filter {
 
 class ProcessAdaptor implements Processor{
 
+
     Filter filter = new Filter();
 
     public String name(){
