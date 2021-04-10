@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context.xsd">
 
     <bean id="user" class="com.cywri.spring5_demo.User">
         <property name="userService" ref="userServiceImpl"></property>
@@ -22,4 +23,16 @@
             </bean>
         </property>
     </bean>
+
+    <bean id="myBean" class="com.cywri.spring5_demo.bean.MyBean"></bean>
+
+    <bean id="order" class="com.cywri.spring5_demo.bean.Order" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="oname" value="手机"></property>
+    </bean>
+
+    <!--<bean id="beanPost" class="com.cywri.spring5_demo.bean.BeanPost"></bean>-->
+
+    <!--<bean id="beanPost1" class="com.cywri.spring5_demo.bean.BeanPost1"></bean>-->
+
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
 </beans>

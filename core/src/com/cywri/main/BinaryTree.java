@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class BinaryTree {
     public static void main(String[] args){
-        int[] dlr = {5,3,1,2,7,6,8};
-        int[] ldr = {1,3,2,5,6,7,8};
+        int[] dlr = {3,9,20,15,7};
+        int[] ldr = {9,3,15,20,7};
         TreeNode treeNode = BinaryTree.rebuildBinaryTree(dlr, ldr);
         System.out.println("结束");
     }
