@@ -22,6 +22,7 @@ public class User implements BeanNameAware {
 
     public void add(){
         System.out.println("add......"+beanId);
+        System.out.println("this"+this);
         userService.update();
     }
 
