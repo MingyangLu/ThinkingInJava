@@ -14,8 +14,7 @@ public class UpConvertDemo {
         Class clazz1 = list.getClass();
         System.out.println(clazz1.getName());
         Method[] methods = clazz1.getMethods();
-        for (Method method:
-             methods) {
+        for (Method method : methods) {
             System.out.println(method);
         }
 

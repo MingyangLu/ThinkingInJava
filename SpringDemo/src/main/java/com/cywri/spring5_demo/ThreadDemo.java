@@ -1,7 +1,6 @@
 package com.cywri.spring5_demo;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.cywri.spring5_demo.user.User;
 
 public class ThreadDemo extends Thread {
 

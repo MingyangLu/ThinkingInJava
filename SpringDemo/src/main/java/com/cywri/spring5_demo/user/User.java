@@ -1,13 +1,17 @@
-package com.cywri.spring5_demo;
+package com.cywri.spring5_demo.user;
 
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class User implements BeanNameAware {
 
-    private UserService userService;
+    @Autowired
+    private UserService userServiceImpl;
 
     public void setUserService(UserService userService) {
-        this.userService = userService;
+        this.userServiceImpl = userService;
     }
 
     private String beanId;
@@ -23,7 +27,7 @@ public class User implements BeanNameAware {
     public void add(){
         System.out.println("add......"+beanId);
         System.out.println("this"+this);
-        userService.update();
+        userServiceImpl.update();
     }
 
 

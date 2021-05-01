@@ -1,6 +1,6 @@
 package com.cywri.spring5_demo.bean;
 
-import com.cywri.spring5_demo.User;
+import com.cywri.spring5_demo.user.User;
 
 public class ThreadWait extends Thread  {
     private String tname;

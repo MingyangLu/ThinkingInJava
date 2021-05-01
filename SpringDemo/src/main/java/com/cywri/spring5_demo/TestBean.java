@@ -1,15 +1,16 @@
 package com.cywri.spring5_demo;
 
-import com.cywri.spring5_demo.bean.Dept;
-import com.cywri.spring5_demo.bean.MyBean;
 import com.cywri.spring5_demo.bean.Order;
 import com.cywri.spring5_demo.bean.ThreadWait;
+import com.cywri.spring5_demo.config.SpringConfig;
+import com.cywri.spring5_demo.user.User;
+import com.cywri.spring5_demo.user.UserService;
+import com.cywri.spring5_demo.user.UserServiceImpl;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;
-import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class TestBean {
@@ -49,9 +50,21 @@ public class TestBean {
         //加载配置文件
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
-        Order order =  applicationContext.getBean("order",Order.class);
+        UserService userService =  applicationContext.getBean("userService", UserServiceImpl.class);
         System.out.println("bean可以使用了（对象获取）");
         ((ClassPathXmlApplicationContext) applicationContext).close();
+
+    }
+
+    @Test
+    public void testService(){
+        //加载配置文件
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+//        UserService userService =  applicationContext.getBean("userServiceImpl", UserServiceImpl.class);
+        User user = applicationContext.getBean("user",User.class);
+        System.out.println("bean可以使用了（对象获取）");
+        user.add();
 
     }
 }
